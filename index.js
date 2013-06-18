@@ -52,15 +52,13 @@ function sregex (str) {
 			// convert to regex
 			currentVar = '([a-zA-Z0-9|,|\.|\'|"|_|-|\=|\+]+)';
 
-			// var prev = parts[i-1];
-			// var next = parts[i+1];
-
 			if ('?' === part) currentVar += '?';
 			else if (' ' === part) currentVar += '\\s?';
 			else if ('\\' === part) currentVar += '\\';
 			else if ('/' === part) currentVar += '\\/';
 			else if ('|' === part) currentVar += '\\|';
 
+			// append to compiled buffer
 			compiled += currentVar;
 			// reset `currentVar` to an empty string
 			currentVar = '';
@@ -70,7 +68,11 @@ function sregex (str) {
 		// should just be appended to the
 		// compiled string
 		else {
+			// finish defining variable
 			defining = false;
+
+			// check if part needs to
+			// be escaped
 			if (' ' === part) {
 				part = '\\s?';
 			} else if ('/' === part) {
@@ -79,6 +81,7 @@ function sregex (str) {
 				part = '\\|';
 			}
 
+			// append part to compiled buffer
 			compiled += part;
 		}
 	});
