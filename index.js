@@ -99,6 +99,12 @@ function sregex (str) {
 		get: function () { return compiled; }
 	});
 
+  regex.test = function (str) {
+    // append `\0` character for proper testing
+    str += '\0';
+    return (/:?/).test.call(regex, str);
+  };
+
 	regex.parse = function (str) {
 		var values, matches
 
