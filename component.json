@@ -2,7 +2,7 @@
   "name": "sregex",
   "repo": "jwerle/sregex",
   "description": "simple string regular expression that exposes matches in defined variables",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "keywords": [],
   "dependencies": {},
   "development": {},
