@@ -79,8 +79,28 @@ converts a string to regular expression and allows retrieval of defined variable
 
 ***example***
 
+```js
+var regex = sregex('/user/:id')
+```
 
-here we can convert a `object` to a `JSON` string and then to binary and attach it to the string
+### .parse(str)
+
+parses a given string and returns an object representing the values extracted using the regular expression used to create it
+
+* `str` - a string to parse and extact values from based on regular expression matches
+
+***example***
+
+```js
+var regex = sregex('/account/:action')
+var values = regex.parse('/action/edit');
+
+console.log(values.action); // edit
+```
+
+## example 
+
+we can convert a `object` to a `JSON` string and then to binary and attach it to the string
 
 ```js
 var regex = sregex('payload|:data')
