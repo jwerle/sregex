@@ -53,6 +53,12 @@ console.log(values.name); // joe
 console.log(values.age); // 22
 ```
 
+the `str` argument for `sregex` accepts a string, but it also can have valid regular expression interpolated
+
+```js
+
+```
+
 ### building a regular expression router
 
 building a router that parses url parameters can be simple as well

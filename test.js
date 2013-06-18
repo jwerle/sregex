@@ -48,5 +48,15 @@ parsed = JSON.parse(parsed);
 assert(parsed.id === data.id);
 assert(parsed.date === data.date);
 
+regex = sregex('it can accept multiple regular expressions like ([a-zA-Z]+), ([0-9]+), and ([a-z]+)')
+assert(regex);
+assert(regex.vars);
+assert('function' === typeof regex.parse);
+
+values = regex.parse('it can accept multiple regular expressions like foogots, 45, and apple');
+assert(values[0] === 'foogots');
+assert(values[1] === '45');
+assert(values[2] === 'apple');
+
 console.log();
 console.log('   √ ok');

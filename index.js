@@ -17,8 +17,9 @@ var define = Object.defineProperty
 
 module.exports = sregex
 function sregex (str) {
-	var parts, compiled, defining, vars, currentVar, regex
+	var original, parts, compiled, defining, vars, currentVar, regex
 	
+	original = str;
 	defining = false;
 	parts = str.split('');
 	compiled = '';
@@ -105,6 +106,12 @@ function sregex (str) {
 
 		if (null === matches) return values;
 		else matches.shift();
+
+		// map all matches as indexex
+		// to the `vars` object
+		matches.map(function (match, i) {
+			values[i] = match;
+		});
 
 		vars.map(function (v, i) {
 			if (i > matches.length) return;
