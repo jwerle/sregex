@@ -105,7 +105,7 @@ function sregex (str) {
 		values = {};
 
 		if (null === matches) return values;
-		else matches.shift();
+		else values._match = matches.shift();
 
 		// map all matches as indexex
 		// to the `vars` object
