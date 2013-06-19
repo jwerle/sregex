@@ -57,12 +57,20 @@ the `str` argument for `sregex` accepts a string, but it also can have valid reg
 
 ```js
 var regex = sregex('it can accept multiple regular expressions like ([a-zA-Z]+), ([0-9]+), and ([a-z]+)');
-
 var values = regex.parse('it can accept multiple regular expressions like foogots, 45, and apple');
 
 console.log(values[0]); // foogots
 console.log(values[1]); // 45
 console.log(values[2]); // apple
+```
+
+it can also accept an instance of `RegExp as input
+
+```js
+var regex = sregex(/^foo\s?bar\s?([a-z]+)/);
+var values = regex.parse('foo bar noob');
+
+console.log(values[0]); // noob
 ```
 
 ### building a regular expression router
