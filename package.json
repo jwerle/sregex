@@ -1,6 +1,6 @@
 {
   "name": "sregex",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "simple string regular expression that exposes matches in defined variables",
   "main": "index.js",
   "scripts": {
