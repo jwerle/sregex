@@ -54,9 +54,17 @@ assert(regex.vars);
 assert('function' === typeof regex.parse);
 
 values = regex.parse('it can accept multiple regular expressions like foogots, 45, and apple');
-assert(values[0] === 'foogots');
-assert(values[1] === '45');
-assert(values[2] === 'apple');
+assert('foogots' === values[0]);
+assert('45' === values[1]);
+assert('apple' === values[2]);
+
+regex = sregex(/^foo\s?bar\s?([a-z]+)/)
+assert(regex);
+assert(regex.vars);
+assert('function' === typeof regex.parse);
+
+values = regex.parse('foo bar noob');
+assert('noob' === values[0]);
 
 console.log();
 console.log('   √ ok');
