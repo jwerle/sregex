@@ -106,11 +106,15 @@ function sregex (str) {
 		get: function () { return compiled; }
 	});
 
-  regex.test = function (str) {
-    // append `\0` character for proper testing
-    str += '\0';
-    return (/:?/).test.call(regex, str);
-  };
+	// we need to preserve original functionality
+	// and append `\0` to string for proper testing
+	;['test', 'exec'].map(function (method) {
+		 regex[method] = function (str) {
+	    // append `\0` character for proper testing
+	    str += '\0';
+	    return (/:?/)[method].call(regex, str);
+	  };
+	});
 
 	regex.parse = function (str) {
 		var values, matches
