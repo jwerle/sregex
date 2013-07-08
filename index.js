@@ -5,6 +5,8 @@
  */
 
 var define = Object.defineProperty
+	,	NULL = '\0'
+	, RNULL = /\u0000$/
 
 /**
  * converts a string to regular expression
@@ -29,7 +31,7 @@ function sregex (str) {
 		compiled = '';
 		currentVar = '';
 		parts = str.split('');
-		parts.push('\0')
+		parts.push(NULL)
 
 		parts.map(function (part, i) {
 			
@@ -111,7 +113,7 @@ function sregex (str) {
 	;['test', 'exec'].map(function (method) {
 		 regex[method] = function (str) {
 	    // append `\0` character for proper testing
-	    str += '\0';
+	    str += NULL;
 	    return (/:?/)[method].call(regex, str);
 	  };
 	});
@@ -120,22 +122,22 @@ function sregex (str) {
 		var values, matches
 
 		// add `\0` for proper string matching
-		str += '\0'
+		str += NULL
 		matches = str.match(this);
 		values = {};
 
 		if (null === matches) return values;
-		else values._match = matches.shift();
+		else values._match = matches.shift().replace(RNULL, '');
 
 		// map all matches as indexex
 		// to the `vars` object
 		matches.map(function (match, i) {
-			values[i] = match;
+			values[i] = match.replace(RNULL, '');
 		});
 
 		vars.map(function (v, i) {
 			if (i > matches.length) return;
-			values[v] = matches[i];
+			values[v] = matches[i].replace(RNULL, '');
 		});
 
 		return values;
