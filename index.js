@@ -1,12 +1,11 @@
 
-
 /**
  * module dependencies
  */
 
 var define = Object.defineProperty
-	,	NULL = '\0'
-	, RNULL = /\u0000$/
+  , NULL = '\0'
+  , RNULL = /\u0000$/
 
 /**
  * converts a string to regular expression
