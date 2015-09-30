@@ -78,8 +78,8 @@ console.log(values[0]); // noob
 building a router that parses url parameters can be simple as well
 
 ```js
-var http = require('http')
-	,	sregex = require('sregex')
+var http = require('http');
+var sregex = require('sregex');
 
 http.createServer(function (req, res) {
 	var regex = sregex('/:resource/:id/:action')
@@ -118,40 +118,6 @@ var values = regex.parse('/action/edit');
 console.log(values.action); // edit
 ```
 
-## example 
-
-we can convert a `object` to a `JSON` string and then to binary and attach it to the string
-
-```js
-var regex = sregex('payload|:data')
-
-var bytes = [];
-
-var data = {
-	id: 1234,
-	date: Date.now()
-};
-
-var str = JSON.stringify(data)
-
-for (var i = 0; i < str.length; ++i) {
-	bytes.push(str.charCodeAt(i));
-}
-
-var values = regex.parse('payload|'+ bytes.toString());
-
-console.log(values.data); // '123,34,105,100,34,58,49,50,51,52,44,34,100,97,116,101,34,58,49,51,55,49,53,56,51,52,51,53,52,52,48,125'
-
-// parse it back into a JSON string
-
-var parsed = ''
-values.data.split(',').map(function (part) {
-	parsed += String.fromCharCode(part);
-});
-
-console.log(parsed); // {"id":1234,"date":1371583641484}
-console.log(JSON.parse(parsed)); // { id: 1234, date: 1371583754259 }
-```
 
 ## license
 
